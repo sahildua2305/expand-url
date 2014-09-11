@@ -26,7 +26,13 @@ def encode(url=""):
     return urllib.quote_plus(url)
 
 @route('/expand-url/<url>', method='GET')
-def expand(url = "http://example.com"):
+def expand(url = ""):
+    if url == "":
+        return {"success" : False,
+            "start_url" : url,
+            "final_url" : "",
+            "url_list" : []
+            }
     url_list = expandURL('http://tuq.in/KxEp')
     return {"success" : False,
             "start_url" : url,
