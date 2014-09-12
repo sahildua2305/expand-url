@@ -1,4 +1,4 @@
-from bottle import route, run
+from bottle import route, run, request
 import httplib
 import urlparse
 import json
@@ -25,18 +25,19 @@ def unshorten_me(url, url_list):
 def encode(url=""):
     return urllib.quote_plus(url)
 
-@route('/expand-url/<url>', method='GET')
+@route('/expand-url', method='GET')
 def expand(url = ""):
+    url = request.query.get('url', '')
     if url == "":
         return {"success" : False,
             "start_url" : url,
             "final_url" : "",
             "url_list" : []
             }
-    url_list = expandURL('http://tuq.in/KxEp')
-    return {"success" : False,
+    url_list = expandURL(url)
+    return {"success" : True,
             "start_url" : url,
-            "final_url" : "",
+            "final_url" : url_list[-1],
             "url_list" : url_list
             }
 
