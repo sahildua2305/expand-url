@@ -21,7 +21,7 @@ def unshorten_me(url, url_list):
             url_list.append(url)
         return url_list
 
-@route('/hello/')
+@route('/')
 def hello():
     return "Hello from Sahil!"
 
@@ -29,7 +29,7 @@ def hello():
 def encode(url=""):
     return urllib.quote_plus(url)
 
-@route('/expand-url', method='GET')
+@route('/expand')
 def expand(url = ""):
     url = request.query.get('url', '')
     if url == "":
