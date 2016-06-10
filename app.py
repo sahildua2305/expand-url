@@ -11,7 +11,7 @@ from sys import argv
 
 @route('/')
 def index():
-    return "To expand a link, send a GET request to /expand?url=&lt;your_short_url&gt;."
+    return "To expand a link, send a GET request to <a href='/expand?url=http://goo.gl/i4NyPz'>/expand?url=&lt;your_short_url&gt;</a>!"
 
 @route('/encode', method='GET')
 def encode(url=""):
