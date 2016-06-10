@@ -47,6 +47,8 @@ def expand(url = ""):
     }
 
 def expandURL(url):
+    if not url.startswith('http'):
+        url = 'http://' + url
     urls = [url]
     return unshorten_me(url, urls)
 
