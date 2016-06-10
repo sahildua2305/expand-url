@@ -16,31 +16,35 @@ def index():
 @route('/encode', method='GET')
 def encode(url=""):
     url = request.query.get('url', '')
-    print url
     return urllib.quote_plus(url)
 
 @route('/expand')
 def expand(url = ""):
     url = request.query.get('url', '')
+
     if url == "":
-        return {"success": False,
+        return {
+            "success": False,
             "start_url": url,
             "final_url": "",
             "url_list": []
-            }
+        }
+
     url_list = expandURL(url)
+
     if len(url_list) == 0:
-        return {"success" : False,
-            "start_url": url,
-            "final_url": "",
-            "url_list": []
-        }
+        success = False
+        final_url = ""
     else:
-        return {"success": True,
-            "start_url": url,
-            "final_url": url_list[-1],
-            "url_list": url_list
-        }
+        success = True
+        final_url = url_list[-1]
+
+    return {
+        "success": success,
+        "start_url": url,
+        "final_url": final_url,
+        "url_list": url_list
+    }
 
 def expandURL(url):
     urls = [url]
