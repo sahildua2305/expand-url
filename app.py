@@ -32,8 +32,10 @@ def unshorten_me(url, url_list):
 def index():
     return "Hello from Sahil!"
 
-@route('/encode/<url>', method='GET')
+@route('/encode', method='GET')
 def encode(url=""):
+    url = request.query.get('url', '')
+    print url
     return urllib.quote_plus(url)
 
 @route('/expand')
@@ -53,8 +55,3 @@ def expand(url = ""):
             }
 
 bottle.run(host='0.0.0.0', port=argv[1])
-
-# application = default_app()
-
-# if __name__ == "__main__":
-#     run(host='0.0.0.0', port=80)
